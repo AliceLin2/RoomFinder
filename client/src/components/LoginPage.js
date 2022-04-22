@@ -10,13 +10,13 @@ function LoginPage({onSignIn}){
             <div>
                 <SignInForm onSignIn={onSignIn}/>
                 <h4>New to Roommate?</h4>
-                <button onclick={()=>setHasAccount(false)}>Join now!</button>
+                <button onClick={()=>setHasAccount(false)}>Join now!</button>
             </div>
             ): (
             <div>
                 <SignUpForm onSignIn={onSignIn}/>
                 <h4>Already have an account?</h4>
-                <button onclick={()=>setHasAccount(true)}>Log in</button>
+                <button onClick={()=>setHasAccount(true)}>Log in</button>
             </div>  
             )
     )

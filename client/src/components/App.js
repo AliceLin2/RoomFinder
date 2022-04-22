@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import LoginPage from "./LoginPage";
-import NavBar from "./NavBar"
-import './App.css';
+/*import NavBar from "./NavBar"*/
 
 function App() {
 

@@ -39,9 +39,9 @@ function SignUpForm({onSignIn}){
     }
   
     return (
-      <form className="SignUp" onSubmit={handleSubmit}>
-        <br></br>
-        <h3>Sign Up</h3>
+      <form className="Login" onSubmit={handleSubmit}>
+        <h1>Roommate</h1>
+        <h3>Create your Roommate account</h3>
         <label>
           username:
           <input type="text" name="username" value={formData.username} onChange={handleChange}/>
