@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  resources :apartments
+  resources :reviews, only: [:create, :destroy, :update, :index]
+  resources :apartments, only: [:create, :destroy, :update, :index]
   post "/signup", to: "users#create"
   get "/me", to: "users#show"
   post "/login", to: "sessions#create"
