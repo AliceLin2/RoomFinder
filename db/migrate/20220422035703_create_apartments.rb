@@ -5,7 +5,8 @@ class CreateApartments < ActiveRecord::Migration[6.1]
       t.integer :rent
       t.integer :num_of_bedrooms
       t.integer :num_of_bathrooms
-
+      t.integer :user_id
+      
       t.timestamps
     end
   end

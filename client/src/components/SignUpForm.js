@@ -67,7 +67,6 @@ function SignUpForm({onSignIn}){
           <textarea type="text" name="interest" value={formData.interest} onChange={handleChange}/>
         </label>
         <button type="submit">Submit</button>
-        {errors.map(e=>console.log(e))}
       </form>
     );
 }

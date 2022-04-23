@@ -6,8 +6,14 @@ class ApartmentsController < ApplicationController
         render json: apartments
     end
 
+    def show
+        apartment = Apartment.find(params[:id])
+        render json: apartment
+    end
+
     def create
-        apartment = Apartment.create!(apartment_params)
+        user = User.find(session[:user_id])
+        apartment = user.apartments.create!(apartment_params)
         render json: apartment, status: :created
     end
 
@@ -26,7 +32,7 @@ class ApartmentsController < ApplicationController
     private
 
     def apartment_params
-        params.permit(:location, :rent, :num_of_bedrooms, :num_of_bathrooms)
+        params.permit(:location, :rent, :num_of_bedrooms, :num_of_bathrooms, :image)
     end
     
     def render_not_found_response
