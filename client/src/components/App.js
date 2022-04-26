@@ -3,7 +3,7 @@ import {Route, Switch} from "react-router-dom"
 import LoginPage from "./LoginPage";
 import NavBar from "./NavBar"
 import NewApartment from "./NewApartment";
-import ApartmentList from "./ApartmentList";
+import MyList from "./MyList";
 import Home from "./Home";
 
 function App() {
@@ -27,29 +27,38 @@ function App() {
       }
     })
   }, [])
-
-  const currentUser = !user? <LoginPage onSignIn={setUser}/> : 
-                              (<div>
-                                  <NavBar />
-                                  <Switch>
-                                    <Route path="/new">
-                                      <NewApartment onChangeApartments={setApartments}/>
-                                    </Route>
-                                    <Route path="/mylist">
-                                      <ApartmentList apartments={apartments} onChangeApartments={setApartments}/>
-                                    </Route>
-                                  </Switch>
-                              </div>)
   
+  function handleDeleteApartment(id) {
+    const updatedApartments = apartments.filter((apartment) => apartment.id !== id)
+    setApartments(updatedApartments)
+  }
+
+  function handleUpdateApartment(updatedApartment) {
+      const updatedApartments = apartments.map((apartment) => {
+          if (apartment.id === updatedApartment.id) {
+          return updatedApartment;
+          } else {
+          return apartment;
+          }
+      });
+      setApartments(updatedApartments)
+  }
+
   return (
           (<div>
-              <NavBar />
+              <NavBar setUser={setUser}/>
               <Switch>
                 <Route path="/home">
-                  <Home/>
+                  <Home apartments={apartments} onDeleteApartment={handleDeleteApartment} onUpdateApartment={handleUpdateApartment}/>
+                </Route>
+                <Route path="/new">
+                  <NewApartment user={user} apartments={apartments} onChangeApartments={setApartments}/>
+                </Route>
+                <Route path="/mylist">
+                  <MyList user={user} apartments={apartments} onDeleteApartment={handleDeleteApartment} onUpdateApartment={handleUpdateApartment}/>
                 </Route>
                 <Route path="/login">
-                  {currentUser}
+                  {user?<h1>Welcome! {user.username}</h1>:<LoginPage onSignIn={setUser}/>}
                 </Route>
               </Switch>
           </div>)

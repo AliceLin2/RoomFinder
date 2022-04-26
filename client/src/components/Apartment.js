@@ -9,7 +9,7 @@ const style = {
     fontSize: "20px",
 };
 
-function Apartment({apartment, onDeleteApartment, onUpdateApartment}) {
+function Apartment({apartment, onDeleteApartment, onUpdateApartment, edit}) {
     const [isUpdating, setIsUpdating] = useState(false);
 
     function handleUpdate(apartment){
@@ -20,21 +20,29 @@ function Apartment({apartment, onDeleteApartment, onUpdateApartment}) {
       fetch(`/apartments/${id}`,{
           method:"DELETE"
       })
-      .then(r=>r.json())
-      .then(data=>{
-        onDeleteApartment(id)
-      })
-    } 
+      .then(()=>onDeleteApartment(id))
+    }
+
+    function handleRate(){
+        console.log("rate")
+    }
+
+    function handleReview(){
+        console.log("review")
+    }
+ 
     return (
         <div style={style}>
             <div>
-                <h2>location: {apartment.location}</h2>
-                <p>rent: {apartment.rent}</p>
+                <h2>{apartment.location}</h2>
+                <p>rent per month: ${apartment.rent}</p>
                 <p>number of bedrooms: {apartment.num_of_bedrooms}</p>
                 <p>number of bathrooms: {apartment.num_of_bathrooms}</p>
             </div>
-            <button id='update' onClick={() => setIsUpdating((isUpdating) => !isUpdating)}>update</button> 
-            <button id='delete' onClick={e=>handleDelete(apartment.id)}>delete</button>        
+            {edit?<button id='update' onClick={() => setIsUpdating((isUpdating) => !isUpdating)}>update</button>:null}
+            {edit?<button id='delete' onClick={e=>handleDelete(apartment.id)}>delete</button>:null}
+            {edit?null:<button id='rate' onClick={e=>handleRate(apartment.id)}>rate</button>} 
+            {edit?null:<button id='review' onClick={e=>handleReview(apartment.id)}>review</button>}        
         </div>
     );
 }

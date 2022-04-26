@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { useHistory } from "react-router-dom";
 
-function NewApartment() {
+function NewApartment({user, apartments, onChangeApartments}) {
   const defaultForm = {    
       location:"",
       rent:"",
@@ -11,6 +11,10 @@ function NewApartment() {
   const [formData, setFormData]=useState(defaultForm)
   const [errors, setErrors] = useState([])
   const history = useHistory();
+
+  function handleAddApartment(newApartment) {
+    onChangeApartments([...apartments, newApartment])
+  }
 
   function handleChange(e){
       const key = e.target.name
@@ -28,21 +32,23 @@ function NewApartment() {
         headers:{
             "Content-Type":"application/json"
         },
-        body:JSON.stringify({formData})
+        body:JSON.stringify(formData)
       })
       .then(r=>{
-        if(r.ok)
-            /*history.push("/");*/
-            console.log(r)
+        if(r.ok){
+            r.json().then((a)=>handleAddApartment(a))
+            history.push("/mylist");
+          }
         else
-            {r.json().then((error)=>setErrors(error.errors))}
+            {r.json().then((error)=>console.log(error))}
         })
   }
 
   return (
-    <form className="NewItem" onSubmit={handleSubmit}>
+    !user?<h1>Please log in to post your apartment!</h1>:
+    (<form className="NewItem" onSubmit={handleSubmit}>
       <br></br>
-      <h3>Add New Fruit To The Shop</h3>
+      <h3>Share some apartment information</h3>
       <label>
        location:
         <input type="text" name="location" value={formData.location} onChange={handleChange}/>
@@ -60,8 +66,7 @@ function NewApartment() {
         <textarea type="text" name="num_of_bathrooms" value={formData.num_of_bathrooms} onChange={handleChange}/>
       </label>
       <button type="submit">Save</button>
-
-    </form>
+    </form>)
   );
 }
 

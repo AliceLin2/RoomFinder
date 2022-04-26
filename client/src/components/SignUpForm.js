@@ -1,17 +1,19 @@
 import React, {useState} from "react"
+import { useHistory } from "react-router-dom";
 
 function SignUpForm({onSignIn}){
     const defaultForm = {    
         username:"",
         password:"",
         password_confirmation:"",
-        age:18,
+        age:"",
         occupation:"",
         interest:""
       }
     const [formData, setFormData]=useState(defaultForm)
     const [errors, setErrors] = useState([])
-    
+    const history = useHistory();
+
     function handleChange(e){
         const key = e.target.name
         const value = key === "age" ? parseInt(e.target.value): e.target.value
@@ -28,13 +30,17 @@ function SignUpForm({onSignIn}){
           headers:{
               "Content-Type":"application/json"
           },
-          body:JSON.stringify({formData})
+          body:JSON.stringify(formData)
         })
         .then(r=>{
             if(r.ok)
-                {r.json().then((user)=>onSignIn(user))}
+                {r.json().then((user)=>{onSignIn(user)
+                  history.push("/home");
+                  setFormData(defaultForm)
+                })}
             else
-                {r.json().then((error)=>setErrors(error.errors))}
+                {r.json().then((error)=>{setErrors(error.errors)
+                console.log(formData)})}
             })
     }
   

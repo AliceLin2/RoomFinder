@@ -1,12 +1,18 @@
-import React, {useState} from "react"
+import React from "react"
+import ApartmentList from "./ApartmentList"
 
-function Home(){
-    const [hasAccount, setHasAccount] = useState(true)
+function Home({apartments, onDeleteApartments, onUpdateApartments}){
 
     return (
-            <div>
-                <h1>Welcome!</h1>
-            </div>
-    )
+        <div>
+            <h1>Welcome to Roommate!</h1>
+            <ApartmentList 
+                displayApartments={apartments} 
+                onDeleteApartments={onDeleteApartments}
+                onUpdateApartments={onUpdateApartments}
+                edit={false}
+            />
+        </div>
+)
 }
 export default Home

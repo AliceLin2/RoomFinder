@@ -7,7 +7,7 @@ skip_before_action :authorize, only: [:create]
             session[:user_id] = user.id
             render json: user, status: :created
         else
-            render json: {error: [“Invalid username or password”]}, status: :unauthorized
+            render json: {errors: ["Invalid username or password"]}, status: :unauthorized
         end
     end
 
