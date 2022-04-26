@@ -35,7 +35,7 @@ function SignUpForm({onSignIn}){
         .then(r=>{
             if(r.ok)
                 {r.json().then((user)=>{onSignIn(user)
-                  history.push("/home");
+                  history.push("/mylist");
                   setFormData(defaultForm)
                 })}
             else

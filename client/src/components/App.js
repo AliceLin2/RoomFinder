@@ -46,7 +46,7 @@ function App() {
 
   return (
           (<div>
-              <NavBar setUser={setUser}/>
+              <NavBar setUser={setUser} user={user}/>
               <Switch>
                 <Route path="/home">
                   <Home apartments={apartments} onDeleteApartment={handleDeleteApartment} onUpdateApartment={handleUpdateApartment}/>

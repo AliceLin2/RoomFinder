@@ -1,15 +1,15 @@
 import React from "react"
 import ApartmentList from "./ApartmentList"
 
-function Home({apartments, onDeleteApartments, onUpdateApartments}){
+function Home({apartments, onDeleteApartment, onUpdateApartment}){
 
     return (
         <div>
             <h1>Welcome to Roommate!</h1>
             <ApartmentList 
                 displayApartments={apartments} 
-                onDeleteApartments={onDeleteApartments}
-                onUpdateApartments={onUpdateApartments}
+                onDeleteApartment={onDeleteApartment}
+                onUpdateApartment={onUpdateApartment}
                 edit={false}
             />
         </div>

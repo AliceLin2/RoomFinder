@@ -1,7 +1,7 @@
 import React from "react";
 import ApartmentList from "./ApartmentList";
 
-function MyList({user, apartments, onDeleteApartments, onUpdateApartments}) {
+function MyList({user, apartments, onDeleteApartment, onUpdateApartment}) {
 
   const displayApartments = !user? null : apartments.filter((apartment) => apartment.user_id==user.id)
 
@@ -9,8 +9,8 @@ function MyList({user, apartments, onDeleteApartments, onUpdateApartments}) {
     !user? <h1>Please log in to see your list!</h1> :
     <ApartmentList 
         displayApartments={displayApartments} 
-        onDeleteApartments={onDeleteApartments}
-        onUpdateApartments={onUpdateApartments}
+        onDeleteApartment={onDeleteApartment}
+        onUpdateApartment={onUpdateApartment}
         edit={true}
     />)
 }

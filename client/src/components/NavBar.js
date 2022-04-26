@@ -11,7 +11,7 @@ const styles = {
   fontSize: "20px"
 };
 
-function NavBar({setUser}) {
+function NavBar({setUser, user}) {
   const history = useHistory();
 
   function handleLogout(){
@@ -69,7 +69,7 @@ function NavBar({setUser}) {
           color: "black"
         }}
       >
-        Login
+        {user?`Hi! ${user.username}`:"Login"}
       </NavLink>
       <button onClick={handleLogout}>Logout</button>
     </div>

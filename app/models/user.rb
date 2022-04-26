@@ -4,5 +4,4 @@ class User < ApplicationRecord
     validates :age, numericality: {minimum: 18}
     has_many :apartments
     has_many :reviews
-   
 end
