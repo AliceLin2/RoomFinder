@@ -12,6 +12,7 @@ const style = {
 
 function Apartment({apartment, onDeleteApartment, onUpdateApartment, edit}) {
     const [isUpdating, setIsUpdating] = useState(false);
+    const [detail, setDetail] = useState(false);
     const defaultForm = {    
         location:apartment.location,
         rent:apartment.rent,
@@ -54,14 +55,22 @@ function Apartment({apartment, onDeleteApartment, onUpdateApartment, edit}) {
       .then(()=>onDeleteApartment(id))
     }
 
-    function handleComment(){
-        console.log("review")
+    function handleClick(id){
+        fetch(`/apartments/${id}`)
+          .then(r=>{
+            if(r.ok){
+                r.json().then((a)=>{
+                    setDetail(!detail)
+                    console.log(a.user)
+                  })
+            }else{r.json().then((error)=>console.log(error))}
+          })
     }
-
+    
     return (
         <div style={style}>
             {isUpdating?
-                (<form className="UpdateItem" onSubmit={handleSubmit} width={"200px"}>
+                (<form className="UpdateItem" onSubmit={handleSubmit} >
                     <label>location:</label>
                     <input type="text" name="location" value={formData.location} onChange={handleChange}/>
                     <label>rent:</label>
@@ -77,14 +86,23 @@ function Apartment({apartment, onDeleteApartment, onUpdateApartment, edit}) {
               ):(
                 <div>
                     <h2>{apartment.location}</h2>
-                    <p>rent per month: $ {apartment.rent}</p>
-                    <p>number of bedrooms: {apartment.num_of_bedrooms}</p>
-                    <p>number of bathrooms: {apartment.num_of_bathrooms}</p>
+                    {edit?<p>rent per month: $ {apartment.rent}</p>:null}
+                    {edit?<p>number of bedrooms: {apartment.num_of_bedrooms}</p>:null}
+                    {edit?<p>number of bathrooms: {apartment.num_of_bathrooms}</p>:null}
                     <img src={apartment.image_url} alt="image" style={style}/>
                 </div>)}
             {edit?<button id='update' onClick={() => setIsUpdating((isUpdating) => !isUpdating)}>update</button>:null}
             {edit?<button id='delete' onClick={e=>handleDelete(apartment.id)}>delete</button>:null}
-            {edit?null:<button id='review' onClick={e=>handleComment(apartment.id)}>leave a comment</button>}        
+            {edit?null:<button id='detail' onClick={e=>handleClick(apartment.id)}>See detail</button>}
+            {detail?<div>
+                        <p>rent per month: $ {apartment.rent}</p>
+                        <p>number of bedrooms: {apartment.num_of_bedrooms}</p>
+                        <p>number of bathrooms: {apartment.num_of_bathrooms}</p>
+                        <p>roommate age: {apartment.user.age}</p>
+                        <p>roommate occupation: {apartment.user.occupation}</p>
+                        <p>roommate interest: {apartment.user.interest}</p>
+                    </div>:null
+            }        
         </div>
     );
 }

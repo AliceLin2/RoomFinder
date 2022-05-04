@@ -14,27 +14,21 @@ function App() {
   useEffect(()=>{
     fetch("/me")
     .then((r)=>{
-      if(r.ok){
-        r.json().then((user)=>setUser(user))
-      }
+      if(r.ok){r.json().then((user)=>setUser(user))}
     })
   }, [])
 
   useEffect(()=>{
     fetch("/types")
     .then((r)=>{
-      if(r.ok){
-        r.json().then((type)=>setTypes(type))
-      }
+      if(r.ok){r.json().then((type)=>setTypes(type))}
     })
   }, [])
 
   useEffect(()=>{
     fetch("/apartments")
     .then((r)=>{
-      if(r.ok){
-        r.json().then((apartments)=>setApartments(apartments))
-      }
+      if(r.ok){r.json().then((apartments)=>setApartments(apartments))}
     })
   }, [])
   

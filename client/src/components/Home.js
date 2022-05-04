@@ -19,15 +19,15 @@ function Home({apartments, onDeleteApartment, onUpdateApartment, types}){
             <Switch>
                 <Route exact path={path}>
                     <ApartmentList 
-                        displayApartments={apartments} 
+                        apartments={apartments} 
                         onDeleteApartment={onDeleteApartment}
                         onUpdateApartment={onUpdateApartment}
                         edit={false}
                     />
                 </Route>
-                <Route path={`${path}/:typeId`}>
+                <Route path={`/types/apartments/:typeId`}>
                     <ApartmentList 
-                        displayApartments={apartments} 
+                        apartments={apartments} 
                         onDeleteApartment={onDeleteApartment}
                         onUpdateApartment={onUpdateApartment}
                         edit={false}

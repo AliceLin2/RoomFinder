@@ -8,7 +8,7 @@ function MyList({user, apartments, onDeleteApartment, onUpdateApartment}) {
   return (
     !user? <h1>Please log in to see your list!</h1> :
     <ApartmentList 
-        displayApartments={displayApartments} 
+        apartments={displayApartments} 
         onDeleteApartment={onDeleteApartment}
         onUpdateApartment={onUpdateApartment}
         edit={true}
