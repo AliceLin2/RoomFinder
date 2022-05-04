@@ -3,5 +3,5 @@ class User < ApplicationRecord
     validates :username, presence: true
     validates :age, numericality: {minimum: 18}
     has_many :apartments
-    has_many :reviews
+    has_many :types, through: :apartments
 end

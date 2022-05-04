@@ -8,6 +8,7 @@ import Home from "./Home";
 
 function App() {
   const [user, setUser] = useState(null)
+  const [types, setTypes] = useState([])
   const [apartments, setApartments] = useState([])
 
   useEffect(()=>{
@@ -15,6 +16,15 @@ function App() {
     .then((r)=>{
       if(r.ok){
         r.json().then((user)=>setUser(user))
+      }
+    })
+  }, [])
+
+  useEffect(()=>{
+    fetch("/types")
+    .then((r)=>{
+      if(r.ok){
+        r.json().then((type)=>setTypes(type))
       }
     })
   }, [])
@@ -48,17 +58,17 @@ function App() {
           (<div>
               <NavBar setUser={setUser} user={user}/>
               <Switch>
-                <Route path="/home">
-                  <Home apartments={apartments} onDeleteApartment={handleDeleteApartment} onUpdateApartment={handleUpdateApartment}/>
-                </Route>
                 <Route path="/new">
-                  <NewApartment user={user} apartments={apartments} onChangeApartments={setApartments}/>
+                  <NewApartment user={user} apartments={apartments} onChangeApartments={setApartments} types={types}/>
                 </Route>
                 <Route path="/mylist">
                   <MyList user={user} apartments={apartments} onDeleteApartment={handleDeleteApartment} onUpdateApartment={handleUpdateApartment}/>
                 </Route>
                 <Route path="/login">
                   {user?<h1>Welcome! {user.username}</h1>:<LoginPage onSignIn={setUser}/>}
+                </Route>
+                <Route path="/">
+                  <Home apartments={apartments} onDeleteApartment={handleDeleteApartment} onUpdateApartment={handleUpdateApartment} types={types}/>
                 </Route>
               </Switch>
           </div>)

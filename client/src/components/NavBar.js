@@ -28,7 +28,7 @@ function NavBar({setUser, user}) {
   return (
     <div>
       <NavLink
-        to="/home"
+        to="/"
         exact
         style={styles}
         activeStyle={{

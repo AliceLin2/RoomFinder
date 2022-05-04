@@ -32,7 +32,7 @@ class ApartmentsController < ApplicationController
     private
 
     def apartment_params
-        params.permit(:location, :rent, :num_of_bedrooms, :num_of_bathrooms, :image)
+        params.permit(:location, :rent, :num_of_bedrooms, :num_of_bathrooms, :image_url, :type_id)
     end
     
     def render_not_found_response
