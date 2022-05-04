@@ -39,41 +39,33 @@ function SignUpForm({onSignIn}){
                   setFormData(defaultForm)
                 })}
             else
-                {r.json().then((error)=>{setErrors(error.errors)
-                console.log(formData)})}
+                {r.json().then((e)=>setErrors(e.errors))}
             })
     }
   
     return (
-      <form className="Login" onSubmit={handleSubmit}>
-        <h1>Roommate</h1>
-        <h3>Create your Roommate account</h3>
-        <label>
-          username:
+      <div>
+        <form className="Login" onSubmit={handleSubmit}>
+          <h1>Roommate</h1>
+          <h3>Create your Roommate account</h3>
+          <label>username: </label>
           <input type="text" name="username" value={formData.username} onChange={handleChange}/>
-        </label>
-        <label>
-          password:
+          <label>password: </label>
           <input type="text" name="password" value={formData.password} onChange={handleChange}/>
-        </label>
-        <label>
-          password confirmation:
+          <label>password confirmation: </label>
           <input type="text" name="password_confirmation" value={formData.password_confirmation} onChange={handleChange}/>
-        </label>
-        <label>
-          age:
+          <label>age: </label>
           <textarea type="text" name="age" value={formData.age} onChange={handleChange}/>
-        </label>
-        <label>
-          occupation:
+          <label>occupation: </label>
           <textarea type="text" name="occupation" value={formData.occupation} onChange={handleChange}/>
-        </label>
-        <label>
-          interest:
+          <label>interest: </label>
           <textarea type="text" name="interest" value={formData.interest} onChange={handleChange}/>
-        </label>
-        <button type="submit">Submit</button>
-      </form>
+          <button type="submit">Submit</button>
+        </form>
+        {errors.map((err) => (
+          <p key={err}>{err}</p>
+        ))}
+      </div>
     );
 }
 export default SignUpForm

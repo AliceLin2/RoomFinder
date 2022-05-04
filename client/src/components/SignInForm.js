@@ -35,24 +35,29 @@ function SignInForm({onSignIn}){
                   setFormData(defaultForm)
                 })}
             else
-                {r.json().then((error)=>console.log(error))}
+                {r.json().then((e)=>setErrors(e.errors))}
             })
     }
   
     return (
-      <form className="Login" onSubmit={handleSubmit}>
-        <h1>Roommate</h1>
-        <h3>Log in to your account</h3>
-        <label>
-          username:
-          <input type="text" name="username" value={formData.username} onChange={handleChange}/>
-        </label>
-        <label>
-          password:
-          <input type="text" name="password" value={formData.password} onChange={handleChange}/>
-        </label>
-        <button type="submit">Submit</button>
-      </form>
+      <div>
+        <form className="Login" onSubmit={handleSubmit}>
+          <h1>Roommate</h1>
+          <h3>Log in to your account</h3>
+          <label>
+            username:
+            <input type="text" name="username" value={formData.username} onChange={handleChange}/>
+          </label>
+          <label>
+            password:
+            <input type="text" name="password" value={formData.password} onChange={handleChange}/>
+          </label>
+          <button type="submit">Submit</button>
+        </form>
+        {errors.map((err) => (
+          <p key={err}>{err}</p>
+        ))}
+      </div>
     );
 }
 export default SignInForm

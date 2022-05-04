@@ -13,6 +13,7 @@ const style = {
 function Apartment({apartment, onDeleteApartment, onUpdateApartment, edit}) {
     const [isUpdating, setIsUpdating] = useState(false);
     const [detail, setDetail] = useState(false);
+    const [error, setError] = useState([])
     const defaultForm = {    
         location:apartment.location,
         rent:apartment.rent,
@@ -61,9 +62,8 @@ function Apartment({apartment, onDeleteApartment, onUpdateApartment, edit}) {
             if(r.ok){
                 r.json().then((a)=>{
                     setDetail(!detail)
-                    console.log(a.user)
                   })
-            }else{r.json().then((error)=>console.log(error))}
+            }else{r.json().then((e)=>setError(e.error))}
           })
     }
     
@@ -89,7 +89,7 @@ function Apartment({apartment, onDeleteApartment, onUpdateApartment, edit}) {
                     {edit?<p>rent per month: $ {apartment.rent}</p>:null}
                     {edit?<p>number of bedrooms: {apartment.num_of_bedrooms}</p>:null}
                     {edit?<p>number of bathrooms: {apartment.num_of_bathrooms}</p>:null}
-                    <img src={apartment.image_url} alt="image" style={style}/>
+                    <img src={apartment.image_url} alt="apartment" style={style}/>
                 </div>)}
             {edit?<button id='update' onClick={() => setIsUpdating((isUpdating) => !isUpdating)}>update</button>:null}
             {edit?<button id='delete' onClick={e=>handleDelete(apartment.id)}>delete</button>:null}
@@ -101,7 +101,7 @@ function Apartment({apartment, onDeleteApartment, onUpdateApartment, edit}) {
                         <p>roommate age: {apartment.user.age}</p>
                         <p>roommate occupation: {apartment.user.occupation}</p>
                         <p>roommate interest: {apartment.user.interest}</p>
-                    </div>:null
+                    </div>:(<p>{error}</p>)
             }        
         </div>
     );

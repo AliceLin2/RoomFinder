@@ -49,7 +49,7 @@ function NewApartment({user, apartments, onChangeApartments, types}) {
         if(r.ok){
             r.json().then((a)=>handleAddApartment(a))
             history.push("/mylist");
-        }else{r.json().then((error)=>console.log(error))}
+        }else{r.json().then((e)=>setErrors(e.errors))}
       })
   }
 
@@ -71,6 +71,9 @@ function NewApartment({user, apartments, onChangeApartments, types}) {
         <textarea type="text" name="image_url" value={formData.image_url} onChange={handleChange}/>
         <button type="submit">Save</button>
       </form>
+      {errors.map((err) => (
+              <p key={err}>{err}</p>
+      ))}
     </div>
   );
 }
