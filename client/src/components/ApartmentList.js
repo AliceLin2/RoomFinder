@@ -9,8 +9,9 @@ function ApartmentList({apartments, onDeleteApartment, onUpdateApartment, edit})
     {displayApartments=apartments.filter(a=>a.type_id===parseInt(typeId))}
   else
     {displayApartments=apartments}
-
+  console.log(displayApartments.length)
   return (
+    displayApartments.length === 0 ? "No this type of apartment available" :
     displayApartments.map((apartment) => 
     (<Apartment 
         apartment={apartment} 
