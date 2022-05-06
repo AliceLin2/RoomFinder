@@ -11,15 +11,16 @@ const style = {
 };
 
 function Apartment({apartment, onDeleteApartment, onUpdateApartment, edit}) {
+    const {location, rent, num_of_bedrooms, num_of_bathrooms, image_url, user} = apartment
     const [isUpdating, setIsUpdating] = useState(false);
     const [detail, setDetail] = useState(false);
     const [error, setError] = useState([])
     const defaultForm = {    
-        location:apartment.location,
-        rent:apartment.rent,
-        num_of_bedrooms:apartment.num_of_bedrooms,
-        num_of_bathrooms:apartment.num_of_bathrooms,
-        image_url:apartment.image_url
+        location: location,
+        rent: rent,
+        num_of_bedrooms: num_of_bedrooms,
+        num_of_bathrooms: num_of_bathrooms,
+        image_url: image_url
       }
     const [formData, setFormData]=useState(defaultForm)
 
@@ -85,22 +86,22 @@ function Apartment({apartment, onDeleteApartment, onUpdateApartment, edit}) {
                 </form>
               ):(
                 <div>
-                    <h2>{apartment.location}</h2>
-                    {edit?<p>rent per month: $ {apartment.rent}</p>:null}
-                    {edit?<p>number of bedrooms: {apartment.num_of_bedrooms}</p>:null}
-                    {edit?<p>number of bathrooms: {apartment.num_of_bathrooms}</p>:null}
-                    <img src={apartment.image_url} alt="apartment" style={style}/>
+                    <h2>{location}</h2>
+                    {edit?<p>rent per month: $ {rent}</p>:null}
+                    {edit?<p>number of bedrooms: {num_of_bedrooms}</p>:null}
+                    {edit?<p>number of bathrooms: {num_of_bathrooms}</p>:null}
+                    <img src={image_url} alt="apartment" style={style}/>
                 </div>)}
             {edit?<button id='update' onClick={() => setIsUpdating((isUpdating) => !isUpdating)}>update</button>:null}
             {edit?<button id='delete' onClick={e=>handleDelete(apartment.id)}>delete</button>:null}
             {edit?null:<button id='detail' onClick={e=>handleClick(apartment.id)}>See detail</button>}
             {detail?<div>
-                        <p>rent per month: $ {apartment.rent}</p>
-                        <p>number of bedrooms: {apartment.num_of_bedrooms}</p>
-                        <p>number of bathrooms: {apartment.num_of_bathrooms}</p>
-                        <p>roommate age: {apartment.user.age}</p>
-                        <p>roommate occupation: {apartment.user.occupation}</p>
-                        <p>roommate interest: {apartment.user.interest}</p>
+                        <p>rent per month: $ {rent}</p>
+                        <p>number of bedrooms: {num_of_bedrooms}</p>
+                        <p>number of bathrooms: {num_of_bathrooms}</p>
+                        <p>roommate age: {user.age}</p>
+                        <p>roommate occupation: {user.occupation}</p>
+                        <p>roommate interest: {user.interest}</p>
                     </div>:(<p>{error}</p>)
             }        
         </div>
