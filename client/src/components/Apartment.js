@@ -46,7 +46,7 @@ function Apartment({apartment, onDeleteApartment, onUpdateApartment, edit}) {
                   onUpdateApartment(a)
                   setIsUpdating(false)
                 })
-          }else{r.json().then((error)=>console.log(error))}
+          }else{r.json().then((e)=>setError(e.error))}
         })
     }
 
@@ -57,7 +57,7 @@ function Apartment({apartment, onDeleteApartment, onUpdateApartment, edit}) {
       .then(()=>onDeleteApartment(id))
     }
 
-    function handleClick(id){
+    function handleDetail(id){
         fetch(`/apartments/${id}`)
           .then(r=>{
             if(r.ok){
@@ -94,7 +94,7 @@ function Apartment({apartment, onDeleteApartment, onUpdateApartment, edit}) {
                 </div>)}
             {edit?<button id='update' onClick={() => setIsUpdating((isUpdating) => !isUpdating)}>update</button>:null}
             {edit?<button id='delete' onClick={e=>handleDelete(apartment.id)}>delete</button>:null}
-            {edit?null:<button id='detail' onClick={e=>handleClick(apartment.id)}>See detail</button>}
+            {edit?null:<button id='detail' onClick={e=>handleDetail(apartment.id)}>See detail</button>}
             {detail?<div>
                         <p>rent per month: $ {rent}</p>
                         <p>number of bedrooms: {num_of_bedrooms}</p>
