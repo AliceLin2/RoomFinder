@@ -1,4 +1,22 @@
-# Project Template: React/Rails API
+Overview
+
+    RoomFinder APP is an APP where users could find many apartments available on market for rent. Users can also post their apartments for rent. Users could update the information regarding each apartment if was posted by them. They also could delete any apartment from their posting list. The apartment will also be removed from apartments list on the home page.
+
+Usage
+       
+    1. on the Home page. users can find many apartments and if click "see detail" button, it will display some detail information about this specific apartment.
+
+    2. If haven't had an account with RoomFinder, sign up by providing some required information. 
+
+    3. User must be logged in to post their own apartment for rent and will find their own postings in My List page.
+
+    4. User can update the apartment information by click update button.
+
+    5. User can delete the apartment information by click delete button if it is no longer available.
+
+    For more information on navigating the APP, please check out this Youtube link. https://www.youtube.com/watch?v=HAOQI1vlsKY
+
+    source of information: https://www.zillow.com/
 
 ## Description
 
