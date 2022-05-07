@@ -42,16 +42,12 @@ function SignInForm({onSignIn}){
     return (
       <div>
         <form className="Login" onSubmit={handleSubmit}>
-          <h1>Roommate</h1>
+          <h1>RoomFinder</h1>
           <h3>Log in to your account</h3>
-          <label>
-            username:
-            <input type="text" name="username" value={formData.username} onChange={handleChange}/>
-          </label>
-          <label>
-            password:
-            <input type="text" name="password" value={formData.password} onChange={handleChange}/>
-          </label>
+          <label>username:</label>
+          <input type="text" name="username" value={formData.username} onChange={handleChange}/>
+          <label>password:</label>
+          <input type="text" name="password" value={formData.password} onChange={handleChange}/>
           <button type="submit">Submit</button>
         </form>
         {errors.map((err) => (

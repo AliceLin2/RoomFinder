@@ -46,8 +46,8 @@ function SignUpForm({onSignIn}){
     return (
       <div>
         <form className="Login" onSubmit={handleSubmit}>
-          <h1>Roommate</h1>
-          <h3>Create your Roommate account</h3>
+          <h1>RoomFinder</h1>
+          <h3>Create your RoomFinder account</h3>
           <label>username: </label>
           <input type="text" name="username" value={formData.username} onChange={handleChange}/>
           <label>password: </label>
@@ -55,9 +55,9 @@ function SignUpForm({onSignIn}){
           <label>password confirmation: </label>
           <input type="text" name="password_confirmation" value={formData.password_confirmation} onChange={handleChange}/>
           <label>age: </label>
-          <textarea type="text" name="age" value={formData.age} onChange={handleChange}/>
+          <input type="integer" name="age" value={formData.age} onChange={handleChange}/>
           <label>occupation: </label>
-          <textarea type="text" name="occupation" value={formData.occupation} onChange={handleChange}/>
+          <input type="text" name="occupation" value={formData.occupation} onChange={handleChange}/>
           <label>interest: </label>
           <textarea type="text" name="interest" value={formData.interest} onChange={handleChange}/>
           <button type="submit">Submit</button>

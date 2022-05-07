@@ -66,7 +66,7 @@ function NewApartment({user, apartments, onChangeApartments, types}) {
         <label>number of bedrooms:</label>
         <input type="text" name="num_of_bedrooms" value={formData.num_of_bedrooms} onChange={handleChange}/>
         <label>number of bathrooms:</label>
-        <textarea type="text" name="num_of_bathrooms" value={formData.num_of_bathrooms} onChange={handleChange}/>
+        <input type="text" name="num_of_bathrooms" value={formData.num_of_bathrooms} onChange={handleChange}/>
         <label>image url:</label>
         <textarea type="text" name="image_url" value={formData.image_url} onChange={handleChange}/>
         <button type="submit">Save</button>

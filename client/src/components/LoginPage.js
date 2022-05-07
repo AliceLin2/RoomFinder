@@ -9,7 +9,7 @@ function LoginPage({onSignIn}){
         hasAccount ? (
             <div>
                 <SignInForm onSignIn={onSignIn}/>
-                <h4>New to Roommate?</h4>
+                <h4>New to RoomFinder?</h4>
                 <button onClick={()=>setHasAccount(false)}>Join now!</button>
             </div>
             ): (

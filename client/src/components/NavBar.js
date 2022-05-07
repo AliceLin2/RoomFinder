@@ -21,7 +21,7 @@ function NavBar({setUser, user}) {
     .then((r)=>{
       if(r.ok){
         setUser(null)
-        history.push("/home");
+        history.push("/");
       }
     })
   }
